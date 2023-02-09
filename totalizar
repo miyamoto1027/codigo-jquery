@@ -1,0 +1,1452 @@
+
+function totalizar(){ // totalizacion de  los  tintes  de  marliou 
+
+
+    var itemcode;
+    var tres=3;
+    var seis=6;
+    var nueve=9;    
+
+    var sumno=0;//variable no
+    var objno;//variable no
+    var cantno;//variable no
+
+    var sivano=0;//variable iva no
+    var obivano; //variable iva no
+    var canivano;//variable iva no
+    //////////////////////////////////////////////////////////////////////////////////////////
+    var sumyes=0;//variable yes
+    var objyes;//variable yes
+    var cantyes;//variable yes
+
+    var sivayes=0;//variable yes
+    var obivayes;//variable yes
+    var canivayes;//variable yes
+
+    var sum=0;
+    var obj;
+    var cant;
+    var descuento;
+    var total=0;
+    var yiva;
+    var tiva=0;
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    var sumtouch=0;//variable touch
+    var objtouch;//variable touch
+    var canttouch;//variable touch
+
+    var sivatouch=0;//variable touch
+    var obivatouch;//variable touch
+    var canivatouch;//variable touch
+
+    var su=0;
+    var obji;
+    var canti;
+    var descu;
+    var tot=0;
+    var ttiva;
+    var totiva=0;
+
+    // variables  para  oxicrema  de 90//
+    var obj90;
+    var objiva90;
+    var canivas90 ;
+    var cant90 ;
+    var sum90 =  0;
+    var sumiva90 = 0;
+    var descu90;
+    var ttiva90;
+
+    var preciound90 = 0;// precio unitario 
+    var respues90 = 0 ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+    var respuesta90 = 0; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+    var costoxisobranes90 =0; // total el valor de  los  sobrantes 
+
+    var precioundiva90 = 0;//valor  iva  de  unitario
+    var respuesiva90 = 0;                 
+    var respuestaiva90 = 0;
+    var costoxisobranesiva90 =0;
+    var completo90 = 0;
+    var completoiva90 =0;
+    var descuentos90=0;
+    var descuentosiva90=0;
+    var  trestante ;
+    var  trestanteiva;
+
+    var toivaoxi60 = 0 ;
+    var tooxi60 = 0;
+
+    // variables para  oxicrema de 150 //
+
+    var obj150;
+    var objiva150;
+    var canivas150 ;
+    var cant150 ;
+    var sum150 =  0;
+    var sumiva150 = 0;
+    var descu150;
+    var ttiva150;
+    
+    var preciound150 = 0;// precio unitario 
+    var respues150 = 0 ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+    var respuesta150 = 0; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+    var costoxisobranes150 =0; // total el valor de  los  sobrantes 
+
+    var precioundiva150 = 0;//valor  iva  de  unitario
+    var respuesiva150 = 0;                 
+    var respuestaiva150 = 0;
+    var costoxisobranesiva150 =0;
+    var completo150 = 0;
+    var completoiva150 =0;
+    var descuentos150 =0;
+    var descuentosiva150 =0;
+    var  trestante150 ;
+    var  trestanteiva150;
+
+    var toivaoxi150 = 0 ;
+    var tooxi150 = 0;
+
+    var procentajetintes=0;
+    var porcentajepiefactura=0;
+    var porcentajeproductos=0;
+
+    var despecial;
+
+	// variables free 60 
+	var sumfrees=0;//variable yes
+    var objyesfrees;//variable yes
+    var cantyesfrees;//variable yes
+
+
+	var sumsfrees=0;
+    var sivayesfrees=0;//variable yes
+    var obivayesfrees;//variable yes
+    var canivayesfrees;//variable yes
+	var totalfrees=0;
+	var tivafrees;
+	var yivafrees;
+    var tivafrees=0;
+
+	// activador free 90 
+	var objfree90;
+	var objivafree90;
+	var canivasfree90 ;
+	var cantfree90 ;
+	var sumfree90 =  0;
+	var sumivafree90 = 0;
+	var descufree90;
+	var ttivafree90;
+
+	var precioundfree90 = 0;// precio unitario 
+	var respuesfree90 = 0 ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+	var respuestafree90 = 0; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+	var costoxisobranesfree90 =0; // total el valor de  los  sobrantes 
+
+	var precioundivafree90 = 0;//valor  iva  de  unitario
+	var respuesivafree90 = 0;                 
+	var respuestaivafree90 = 0;
+	var costoxisobranesivafree90 =0;
+	var completofree90 = 0;
+	var completoivafree90 =0;
+	var descuentosfree90=0;
+	var descuentosivafree90=0;
+	var  trestantefree ;
+	var  trestanteivafree;
+
+	var toivaoxifree60 = 0 ;
+	var tooxifree60 = 0;
+
+
+	//
+
+
+
+
+
+
+
+
+$('input[name="tinte[]"]').each(function() { 
+
+	
+
+    tcliente=$("#tipcliente").val();
+            
+
+    if(tcliente != '2 - DISTRIBUIDORES'){ // si  es  diferente  a  los  distribuidores  es aqui donde  colocar  lo de  henrry
+
+
+        despecial= accioneespecial(codigosclientes);            
+
+        
+        
+        
+if(despecial.cardcodeporcentaje != false){// indican que estan en las acciones especiales 
+
+
+
+
+  if (  $(this).val() == 'no' ) { // totaliza productos que no son tintes ni touch
+
+      itemcode=$(this).closest("tr").find("td:eq(0)").text();
+      currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      objno =  $(this).closest("tr").find("input[name='inporte[]']");
+      obivano = $(this).closest("tr").find("input[name='iva[]']");
+      cantno = objno.val();
+      canivano = obivano.val();
+      sumno =  sumno + parseInt(objno.val());
+      sivano = sivano + parseInt(obivano.val());
+  
+
+	  if(itemcode ==  'MAPTGELA2000' || itemcode =='MAPTGELA0002' || itemcode =='MAPTGELA0250' || itemcode =='MAPTGELA4000' || itemcode =='MAPTGELA0500' || itemcode == 'MAPTGELA1000' || itemcode =='MAPTGELA0160'){
+
+		   
+	
+
+
+        }else{
+
+        $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+        }
+
+      
+
+  }else if($(this).val() == 'yes'){
+
+      currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      objyes=  $(this).closest("tr").find("input[name='inporte[]']");
+      obivayes = $(this).closest("tr").find("input[name='iva[]']");
+      cantyes = objyes.val();
+      canivayes = obivayes.val();
+      total =  total + parseInt(objyes.val());
+      tiva = tiva + parseInt(obivayes.val());  
+
+      $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+
+
+  }else if($(this).val() == 'touch'){
+
+      currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+      obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+      canttouch = objtouch.val() ;
+      canivatouch = obivatouch.val();
+      tot =  tot + parseInt(objtouch.val());
+      totiva = totiva + parseInt(obivatouch.val());
+      $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+  }else if($(this).val() == 'ox90'){
+
+      currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+      objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+      canivas90 = objiva90.val();
+      cant90 = obj90.val() ;
+      sum90 =  sum90 + parseInt(obj90.val());
+      sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+      toivaoxi60 = sumiva90;
+      tooxi60 = sum90;
+      $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+  }else if($(this).val() == 'ox150'){
+
+
+      currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+      objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+      canivas150 = objiva150.val();
+      cant150 = obj150.val() ;
+      sum150 =  sum150 + parseInt(obj150.val());
+      sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+      toivaoxi150 = sumiva150;
+      tooxi150 = sum150;    
+      $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+  }else if( $(this).val() == 'freesix'){
+		currentInput = $(this).closest("tr").find("td:eq(4)"); 
+		objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+		obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+		cantyesfrees = objyesfrees.val();
+		canivayesfrees = obivayesfrees.val();
+		totalfrees =  totalfrees + parseInt(objyesfrees.val());
+		tivafrees = tivafrees + parseInt(obivayesfrees.val());     
+		$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+		console.log("1",totalfrees);
+	}else if( $(this).val() == 'actsix'){
+	  currentInput = $(this).closest("tr").find("td:eq(4)"); 
+      objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+      objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+      canivasfree90 = objivafree90.val();
+      cantfree90 = objfree90.val() ;
+      sumfree90 =  sumfree90 + parseInt(objfree90.val());
+      sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+      toivaoxifree60 = sumivafree90;
+      tooxifree60 = sumfree90;
+      $(this).closest("tr").find("input[name='porcentaje[]']").val("0");
+
+
+	}
+
+
+
+
+
+}else{
+
+              
+
+                if (  $(this).val() == 'no' ) { // totaliza productos que no son tintes ni touch
+
+                          
+                            itemcode=$(this).closest("tr").find("td:eq(0)").text();
+
+                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                            objno =  $(this).closest("tr").find("input[name='inporte[]']")
+                            obivano = $(this).closest("tr").find("input[name='iva[]']")
+                            cantno = objno.val();
+                            canivano = obivano.val();
+                            sumno =  sumno + parseInt(objno.val());
+                            sivano = sivano + parseInt(obivano.val());
+
+                       
+						
+
+
+                }else if($(this).val() == 'yes'){
+
+                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                        obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                        cantyes = objyes.val();
+                        canivayes = obivayes.val();
+                        total =  total + parseInt(objyes.val());
+                        tiva = tiva + parseInt(obivayes.val());  
+
+
+
+                }else if($(this).val() == 'touch'){
+
+                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                    objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                    obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                    canttouch = objtouch.val() ;
+                    canivatouch = obivatouch.val();
+                    tot =  tot + parseInt(objtouch.val());
+                    totiva = totiva + parseInt(obivatouch.val());
+
+                }else if($(this).val() == 'ox90'){
+
+                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                    obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                    objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                    canivas90 = objiva90.val();
+                    cant90 = obj90.val() ;
+                    sum90 =  sum90 + parseInt(obj90.val());
+                    sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                    toivaoxi60 = sumiva90;
+                    tooxi60 = sum90;
+
+                }else if($(this).val() == 'ox150'){
+
+
+                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                    obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                    objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                    canivas150 = objiva150.val();
+                    cant150 = obj150.val() ;
+                    sum150 =  sum150 + parseInt(obj150.val());
+                    sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                    toivaoxi150 = sumiva150;
+                    tooxi150 = sum150;    
+
+                }
+				else if( $(this).val() == 'freesix'){
+
+						currentInput = $(this).closest("tr").find("td:eq(4)"); 
+						objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+						obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+						cantyesfrees = objyesfrees.val();
+						canivayesfrees = obivayesfrees.val();
+						totalfrees =  totalfrees + parseInt(objyesfrees.val());
+						tivafrees = tivafrees + parseInt(obivayesfrees.val());     
+						$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+						console.log("2",totalfrees);
+				}else if( $(this).val() == 'actsix'){
+					currentInput = $(this).closest("tr").find("td:eq(4)"); 
+					objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+					objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+					canivasfree90 = objivafree90.val();
+					cantfree90 = objfree90.val() ;
+					sumfree90 =  sumfree90 + parseInt(objfree90.val());
+					sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+					toivaoxifree60 = sumivafree90;
+					tooxifree60 = sumfree90;
+					$(this).closest("tr").find("input[name='porcentaje[]']").val("0");
+
+
+				}
+           
+            }
+
+
+    }else{// en el  caso que  sea distribuidor   aca  hay que  modificar   segun el   id  del  cliente  
+
+            
+        
+
+        despecial= accioneespecial(codigosclientes);            
+
+        
+        
+        
+              if(despecial.cardcodeporcentaje != false){// indican que estan en las acciones especiales 
+
+             
+
+          
+                    if (  $(this).val() == 'no' ) { // totaliza productos que no son tintes ni touch
+
+                        itemcode=$(this).closest("tr").find("td:eq(0)").text();
+
+                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        objno =  $(this).closest("tr").find("input[name='inporte[]']")
+                        obivano = $(this).closest("tr").find("input[name='iva[]']")
+                        cantno = objno.val();
+                        canivano = obivano.val();
+                        sumno =  sumno + parseInt(objno.val());
+                        sivano = sivano + parseInt(obivano.val());
+                     
+
+                    
+
+                        if(itemcode ==  'MAPTGELA2000' || itemcode =='MAPTGELA0002' || itemcode =='MAPTGELA0250' || itemcode =='MAPTGELA4000' || itemcode =='MAPTGELA0500' || itemcode == 'MAPTGELA1000' || itemcode =='MAPTGELA0160'){
+							
+
+
+                        }else{
+
+                        $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+                        }
+
+
+                    }else if($(this).val() == 'yes'){
+
+                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                        obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                        cantyes = objyes.val();
+                        canivayes = obivayes.val();
+                        total =  total + parseInt(objyes.val());
+                        tiva = tiva + parseInt(obivayes.val());  
+
+                        $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+
+
+                    }else if($(this).val() == 'touch'){
+
+                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                        obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                        canttouch = objtouch.val() ;
+                        canivatouch = obivatouch.val();
+                        tot =  tot + parseInt(objtouch.val());
+                        totiva = totiva + parseInt(obivatouch.val());
+                        $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+                    }else if($(this).val() == 'ox90'){
+
+                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                        objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                        canivas90 = objiva90.val();
+                        cant90 = obj90.val() ;
+                        sum90 =  sum90 + parseInt(obj90.val());
+                        sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                        toivaoxi60 = sumiva90;
+                        tooxi60 = sum90;
+                        $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+                    }else if($(this).val() == 'ox150'){
+
+
+                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                        obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                        objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                        canivas150 = objiva150.val();
+                        cant150 = obj150.val() ;
+                        sum150 =  sum150 + parseInt(obj150.val());
+                        sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                        toivaoxi150 = sumiva150;
+                        tooxi150 = sum150;    
+                        $(this).closest("tr").find("input[name='porcentaje[]']").val(despecial.procentajetintes);
+
+                    }else if( $(this).val() == 'freesix'){
+						currentInput = $(this).closest("tr").find("td:eq(4)"); 
+						objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+						obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+						cantyesfrees = objyesfrees.val();
+						canivayesfrees = obivayesfrees.val();
+						totalfrees =  totalfrees + parseInt(objyesfrees.val());
+						tivafrees = tivafrees + parseInt(obivayesfrees.val());     
+						$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+						console.log("3",totalfrees);
+					}else if( $(this).val() == 'actsix'){
+						currentInput = $(this).closest("tr").find("td:eq(4)"); 
+						objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+						objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+						canivasfree90 = objivafree90.val();
+						cantfree90 = objfree90.val() ;
+						sumfree90 =  sumfree90 + parseInt(objfree90.val());
+						sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+						toivaoxifree60 = sumivafree90;
+						tooxifree60 = sumfree90;
+						$(this).closest("tr").find("input[name='porcentaje[]']").val("0");
+
+
+					}
+
+
+
+
+
+              }else{//si no  estan en la acciones  especiales 
+
+              
+
+                        if (  $(this).val() == 'no' ) { // totaliza productos que no son tintes ni touch
+
+                                        itemcode=$(this).closest("tr").find("td:eq(0)").text();
+                                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                        objno =  $(this).closest("tr").find("input[name='inporte[]']")
+                                        obivano = $(this).closest("tr").find("input[name='iva[]']")
+                                        cantno = objno.val();
+                                        canivano = obivano.val();
+                                        sumno =  sumno + parseInt(objno.val());
+                                        sivano = sivano + parseInt(obivano.val());
+                                        
+                                      
+
+                                        if(itemcode ==  'MAPTGELA2000' || itemcode =='MAPTGELA0002' || itemcode =='MAPTGELA0250' || itemcode =='MAPTGELA4000' || itemcode =='MAPTGELA0500' || itemcode == 'MAPTGELA1000' || itemcode =='MAPTGELA0160'){
+										
+								
+												
+								
+											    
+
+
+                                         }else{
+
+                                            $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+                                         }
+
+                                       
+
+                                   
+      
+
+                        }else if( $(this).val() == 'yes'){// totaliza productos yes que son los tintes 
+
+                                sum = $("#totaltintes").val();
+
+                                        if(sum >0 && sum <= 99 ){// si la cantidad  de mayor a 0 y  meno o igual a 99
+
+                                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                        objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                                        obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                                        cantyes = objyes.val();
+                                        canivayes = obivayes.val();
+                                        total =  total + parseInt(objyes.val());
+                                        tiva = tiva + parseInt(obivayes.val());     
+                                        $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+                                        
+                                    
+
+                                        }else if(sum >=100 && sum <= 250 ){// si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+
+                                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                        objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                                        obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                                        cantyes = objyes.val();
+                                        canivayes = obivayes.val();
+                                        sumyes =  sumyes + parseInt(objyes.val());
+                                        descuento = sumyes * tres / 100;
+                                        total = sumyes - descuento;
+                                        sivayes = sivayes + parseInt(obivayes.val());
+                                        yiva = sivayes * tres / 100;
+                                        tiva = sivayes - yiva;
+
+                                        $(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+                                        }else if(sum >=251 && sum <= 500 ){// // si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                                                obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                                                cantyes = objyes.val();
+                                                canivayes = obivayes.val();
+                                                sumyes =  sumyes + parseInt(objyes.val());
+                                                descuento = sumyes * seis / 100;
+                                                total = sumyes - descuento;
+                                                sivayes = sivayes + parseInt(obivayes.val());
+                                                yiva = sivayes * seis / 100;
+                                                tiva = sivayes - yiva;
+
+                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(seis);        
+
+                                    
+
+                                        }else if(sum >=501 ){// si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+
+                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                objyes=  $(this).closest("tr").find("input[name='inporte[]']")
+                                                obivayes = $(this).closest("tr").find("input[name='iva[]']")
+                                                cantyes = objyes.val();
+                                                canivayes = obivayes.val();
+                                                sumyes =  sumyes + parseInt(objyes.val());
+                                                descuento = sumyes * nueve / 100;
+                                                total = sumyes - descuento;
+                                                sivayes = sivayes + parseInt(obivayes.val());
+                                                yiva = sivayes * nueve / 100;
+                                                tiva = sivayes - yiva;
+                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+                                    
+
+                                        }
+
+                        }else if( $(this).val() == 'freesix'){// totaliza productos freesix que son los tintes free 60
+
+									sumfrees = $("#totalfrees").val();
+
+											if(sumfrees >0 && sumfrees <= 71 ){// si la cantidad  de mayor a 0 y  meno o igual a 99
+
+											currentInput = $(this).closest("tr").find("td:eq(4)"); 
+											objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+											obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+											cantyesfrees = objyesfrees.val();
+											canivayesfrees = obivayesfrees.val();
+											totalfrees =  totalfrees + parseInt(objyesfrees.val());
+											tivafrees = tivafrees + parseInt(obivayesfrees.val());     
+											$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+											
+										
+
+											}else if(sumfrees >=72 && sumfrees <= 144 ){// si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+
+											currentInput = $(this).closest("tr").find("td:eq(4)"); 
+											objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+											obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+											cantyesfrees = objyesfrees.val();
+											canivayesfrees = obivayesfrees.val();
+											sumsfrees =  sumsfrees + parseInt(objyesfrees.val());
+											descuento = sumsfrees * tres / 100;
+											totalfrees = sumsfrees - descuento;
+											sivayesfrees = sivayesfrees + parseInt(obivayesfrees.val());
+											yivafrees = sivayesfrees * tres / 100;
+											tivafrees = sivayesfrees - yivafrees;
+
+											$(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+											}else if(sumfrees >=145 && sumfrees <= 204 ){// // si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+											currentInput = $(this).closest("tr").find("td:eq(4)"); 
+											objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+											obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+											cantyesfrees = objyesfrees.val();
+											canivayesfrees = obivayesfrees.val();
+											sumsfrees =  sumsfrees + parseInt(objyesfrees.val());
+											descuento = sumsfrees * seis / 100;
+											totalfrees = sumsfrees - descuento;
+											sivayesfrees = sivayesfrees + parseInt(obivayesfrees.val());
+											yivafrees = sivayesfrees * seis / 100;
+											tivafrees = sivayesfrees - yivafrees;
+
+											$(this).closest("tr").find("input[name='porcentaje[]']").val(seis);      
+
+										
+
+											}else if(sumfrees >=205 ){// si la cantidad  de mayor o igual a  100 y  meno o igual a 250
+
+											currentInput = $(this).closest("tr").find("td:eq(4)"); 
+											objyesfrees=  $(this).closest("tr").find("input[name='inporte[]']")
+											obivayesfrees = $(this).closest("tr").find("input[name='iva[]']")
+											cantyesfrees = objyesfrees.val();
+											canivayesfrees = obivayesfrees.val();
+											sumsfrees =  sumsfrees + parseInt(objyesfrees.val());
+											descuento = sumsfrees * nueve / 100;
+											totalfrees = sumsfrees - descuento;
+											sivayesfrees = sivayesfrees + parseInt(obivayesfrees.val());
+											yivafrees = sivayesfrees * nueve / 100;
+											tivafrees = sivayesfrees - yivafrees;
+
+											$(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+										
+
+											}
+						
+						
+						
+						
+							}else if($(this).val() == 'touch'){
+
+                                su = $("#totaltouch").val();
+                        
+                        
+
+                                        if(su > 0 && su <= 99){
+
+                                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                            objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                                            obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                                            canttouch = objtouch.val() ;
+                                            canivatouch = obivatouch.val();
+                                            tot =  tot + parseInt(objtouch.val());
+                                            totiva = totiva + parseInt(obivatouch.val());
+                                            $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+                                        
+
+                                        
+
+                                        }else if(su >=100 && su <= 250){
+
+                                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                            objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                                            obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                                            canttouch = objtouch.val() ;
+                                            canivatouch = obivatouch.val();
+                                            sumtouch =  sumtouch + parseInt(objtouch.val());
+                                            descu = sumtouch * tres / 100;
+                                            tot = sumtouch - descu;
+                                            sivatouch = sivatouch + parseInt(obivatouch.val());
+                                            ttiva = sivatouch * tres / 100;
+                                            totiva = sivatouch - ttiva;
+                                            $(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+                                          
+
+                                        }else if(su >=251 && su <= 500 ){
+                                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                            objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                                            obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                                            canttouch = objtouch.val() ;
+                                            canivatouch = obivatouch.val();
+                                            sumtouch =  sumtouch + parseInt(objtouch.val());
+                                            descu = sumtouch * seis / 100;
+                                            tot = sumtouch - descu;
+                                            sivatouch = sivatouch + parseInt(obivatouch.val());
+                                            ttiva = sivatouch * seis / 100;
+                                            totiva = sivatouch - ttiva;
+                                            $(this).closest("tr").find("input[name='porcentaje[]']").val(seis);
+
+                                            
+
+                                        }else if(su >= 501 ){
+                                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                            objtouch=  $(this).closest("tr").find("input[name='inporte[]']")
+                                            obivatouch = $(this).closest("tr").find("input[name='iva[]']")
+                                            canttouch = objtouch.val() ;
+                                            canivatouch = obivatouch.val();
+                                            sumtouch =  sumtouch + parseInt(objtouch.val());
+                                            descu = sumtouch * nueve / 100;
+                                            tot = sumtouch - descu;
+                                            sivatouch = sivatouch + parseInt(obivatouch.val());
+                                            ttiva = sivatouch * nueve / 100;
+                                            totiva = sivatouch - ttiva;
+
+                                            $(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+                                      
+
+                                        }
+
+
+
+
+
+										
+                        }else if($(this).val() == 'actsix'){ /// linea activador free	
+									var tintesfree60 = $("#totalfrees").val();
+									var  activadorfree90 = $('#active90').val();
+
+									if (parseInt(activadorfree90) < parseInt(tintesfree60)) {// cuando  las oxicremas de  90 son menores  a los  tintes 
+									currentInput = $(this).closest("tr").find("td:eq(4)"); 
+									objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+									objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+									canivasfree90 = objivafree90.val();
+									cantfree90 = objfree90.val() ;
+									sumfree90 =  sumfree90 + parseInt(objfree90.val());
+									sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+									toivaoxifree60 = sumivafree90;
+									tooxifree60 = sumfree90;
+									$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+
+
+									}else if(parseInt(activadorfree90) === parseInt(tintesfree60)){// cuando las oxicremas 90 son  iguales  a los  tintes de 60 
+
+														if (parseInt(activadorfree90) >= 0 && parseInt(activadorfree90) <= 71) {// si las oxicremas  son menores a  99 
+
+														currentInput = $(this).closest("tr").find("td:eq(4)"); 
+														objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+														objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+														canivasfree90 = objivafree90.val();
+														cantfree90 = objfree90.val() ;
+														sumfree90 =  sumfree90 + parseInt(objfree90.val());
+														sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+														toivaoxifree60 = sumivafree90;
+														tooxifree60 = sumfree90;
+														$(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+											
+													}else if(parseInt(activadorfree90) >= 72 && parseInt(activadorfree90) <= 144){// si  las  oxicremas son  mas de  100  pero  menos  de 250 
+
+																currentInput = $(this).closest("tr").find("td:eq(4)"); 
+																objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+																objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+																canivasfree90 = objivafree90.val();
+																cantfree90 = objfree90.val() ;
+																sumfree90 =  sumfree90 + parseInt(objfree90.val());
+																sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+																descufree90 = sumfree90 * tres / 100;
+																tooxifree60 = sumfree90 - descufree90;
+														
+																ttivafree90 = sumivafree90 * tres / 100;
+																toivaoxifree60 = sumivafree90 - ttivafree90;
+																$(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+									
+
+														}else if(parseInt(activadorfree90) >= 145 && parseInt(activadorfree90) <= 204){
+
+																currentInput = $(this).closest("tr").find("td:eq(4)"); 
+																objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+																objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+																canivasfree90 = objivafree90.val();
+																cantfree90 = objfree90.val() ;
+																sumfree90 =  sumfree90 + parseInt(objfree90.val());
+																sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+																descufree90 = sumfree90 * seis / 100;
+																tooxifree60 = sumfree90 - descufree90;
+														
+																ttivafree90 = sumivafree90 * seis / 100;
+																toivaoxifree60 = sumivafree90 - ttivafree90;
+																$(this).closest("tr").find("input[name='porcentaje[]']").val(seis);
+												
+														}else if(parseInt(activadorfree90) >= 205 ){
+
+																currentInput = $(this).closest("tr").find("td:eq(4)"); 
+																objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+																objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+																canivasfree90 = objivafree90.val();
+																cantfree90 = objfree90.val() ;
+																sumfree90 =  sumfree90 + parseInt(objfree90.val());
+																sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+																descufree90 = sumfree90 * nueve / 100;
+																tooxifree60 = sumfree90 - descufree90;
+														
+																ttivafree90 = sumivafree90 * nueve / 100;
+																toivaoxifree60 = sumivafree90 - ttivafree90;
+																$(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+
+														}
+
+
+
+									}else if(parseInt(activadorfree90) > parseInt(tintesfree60)){// cuando  las oxicremas de  90 son  mas que  los  tintes  de  60 
+
+													currentInput = $(this).closest("tr").find("td:eq(4)"); 
+													objfree90 =  $(this).closest("tr").find("input[name='inporte[]']");
+													objivafree90 =  $(this).closest("tr").find("input[name='iva[]']");
+													canivasfree90 = objivafree90.val();
+													cantfree90 = objfree90.val() ;
+													sumfree90 =  sumfree90 + parseInt(objfree90.val());
+													sumivafree90 = sumivafree90 + parseInt(objivafree90.val());
+
+													precioundfree90 = sumfree90 / parseInt(activadorfree90);// precio unitario 
+													respuesfree90 = parseInt(activadorfree90) - parseInt(tintesfree60) ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+													respuestafree90 = parseInt(activadorfree90) - respuesfree90; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+													costoxisobranesfree90 = respuesfree90 * precioundfree90; // total el valor de  los  sobrantes 
+
+													precioundivafree90 = sumivafree90 / parseInt(activadorfree90);//valor  iva  de  unitario
+													respuesivafree90 = parseInt(activadorfree90) - parseInt(tintesfree60) ;                 
+													respuestaivafree90 = parseInt(activadorfree90) - respuesivafree90;
+													costoxisobranesivafree90 = respuesivafree90 * precioundivafree90;
+
+												
+
+
+
+																if (respuestafree90 > 0 && respuestafree90 <= 99) {
+
+																			completoivafree90 = respuestaivafree90 * precioundivafree90;
+																			completofree90 = respuestafree90 * precioundfree90;
+																		
+																									
+																}else if (respuestafree90 >= 100 && respuestafree90 <= 250) {
+																	
+																			trestantefree = respuestafree90 * precioundfree90;
+																			trestanteivafree = respuestaivafree90 * precioundivafree90;
+																			descuentosfree90 = trestantefree * tres / 100;
+																			completofree90 = trestantefree - descuentosfree90;
+																		
+																			descuentosivafree90 = trestanteivafree * tres / 100;
+																			completoivafree90 = trestanteivafree - descuentosivafree90;
+																		
+																			
+																	
+																}else if (respuestafree90 >= 251 && respuestafree90 <= 500) {
+
+																			trestantefree = respuestafree90 * precioundfree90;
+																			trestanteivafree = respuestaivafree90 * precioundivafree90;
+																			descuentosfree90 = trestantefree * seis / 100;
+																			completofree90 = trestantefree - descuentosfree90;
+																		
+																			descuentosivafree90 = trestanteivafree * seis / 100;
+																			completoivafree90 = trestanteivafree - descuentosivafree90;
+																		
+																			
+																	
+																}else if (respuestafree90 >= 501) {
+
+																			trestantefree = respuestafree90 * precioundfree90;
+																			trestanteivafree = respuestaivafree90 * precioundivafree90;
+																			descuentosfree90 = trestantefree * nueve / 100;
+																			completofree90 = trestantefree - descuentosfree90;
+																		
+																			descuentosivafree90 = trestanteivafree * nueve / 100;
+																			completoivafree90 = trestanteivafree - descuentosivafree90;
+																		
+																			
+
+
+
+																	
+																}
+
+
+												toivaoxifree60 = completoivafree90 + costoxisobranesivafree90 ;
+												tooxifree60 = completofree90 + costoxisobranesfree90; 
+
+											
+
+
+
+
+
+										}       
+
+
+
+								}else if($(this).val() == 'ox90'){
+                                    var tintes60 = $("#totaltouch").val();
+                                    var  toxi90 = $('#oxicrema90').val();
+
+                                    if (parseInt(toxi90) < parseInt(tintes60)) {// cuando  las oxicremas de  90 son menores  a los  tintes 
+                                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                    obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                    objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                    canivas90 = objiva90.val();
+                                    cant90 = obj90.val() ;
+                                    sum90 =  sum90 + parseInt(obj90.val());
+                                    sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                    toivaoxi60 = sumiva90;
+                                    tooxi60 = sum90;
+                                    $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+
+
+                                    }else if(parseInt(toxi90) === parseInt(tintes60)){// cuando las oxicremas 90 son  iguales  a los  tintes de 60 
+
+                                                        if (parseInt(toxi90) >= 0 && parseInt(toxi90) <= 99) {// si las oxicremas  son menores a  99 
+
+                                                        currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                        obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                        objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                        canivas90 = objiva90.val();
+                                                        cant90 = obj90.val() ;
+                                                        sum90 =  sum90 + parseInt(obj90.val());
+                                                        sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                                        toivaoxi60 = sumiva90;
+                                                        tooxi60 = sum90;
+                                                        $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+                                            
+                                                    }else if(parseInt(toxi90) >= 100 && parseInt(toxi90) <= 250){// si  las  oxicremas son  mas de  100  pero  menos  de 250 
+
+                                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                                obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                                objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                                canivas90 = objiva90.val();
+                                                                cant90 = obj90.val() ;
+                                                                sum90 =  sum90 + parseInt(obj90.val());
+                                                                sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                                                descu90 = sum90 * tres / 100;
+                                                                tooxi60 = sum90 - descu90;
+                                                        
+                                                                ttiva90 = sumiva90 * tres / 100;
+                                                                toivaoxi60 = sumiva90 - ttiva90;
+                                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+                                    
+
+                                                        }else if(parseInt(toxi90) >= 251 && parseInt(toxi90) <= 500){
+
+                                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                                obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                                objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                                canivas90 = objiva90.val();
+                                                                cant90 = obj90.val() ;
+                                                                sum90 =  sum90 + parseInt(obj90.val());
+                                                                sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                                                descu90 = sum90 * seis / 100;
+                                                                tooxi60 = sum90 - descu90;
+                                                        
+                                                                ttiva90 = sumiva90 * seis / 100;
+                                                                toivaoxi60 = sumiva90 - ttiva90;
+                                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(seis);
+                                                
+                                                        }else if(parseInt(toxi90) >= 501 ){
+
+                                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                                obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                                objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                                canivas90 = objiva90.val();
+                                                                cant90 = obj90.val() ;
+                                                                sum90 =  sum90 + parseInt(obj90.val());
+                                                                sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                                                descu90 = sum90 * nueve / 100;
+                                                                tooxi60 = sum90 - descu90;
+                                                        
+                                                                ttiva90 = sumiva90 * nueve / 100;
+                                                                toivaoxi60 = sumiva90 - ttiva90;
+                                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+
+                                                        }
+
+
+
+                                    }else if(parseInt(toxi90) > parseInt(tintes60)){// cuando  las oxicremas de  90 son  mas que  los  tintes  de  60 
+
+                                                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                    obj90 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                    objiva90 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                    canivas90 = objiva90.val();
+                                                    cant90 = obj90.val() ;
+                                                    sum90 =  sum90 + parseInt(obj90.val());
+                                                    sumiva90 = sumiva90 + parseInt(objiva90.val());
+
+                                                    preciound90 = sum90 / parseInt(toxi90);// precio unitario 
+                                                    respues90 = parseInt(toxi90) - parseInt(tintes60) ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+                                                    respuesta90 = parseInt(toxi90) - respues90; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+                                                    costoxisobranes90 = respues90 * preciound90; // total el valor de  los  sobrantes 
+
+                                                    precioundiva90 = sumiva90 / parseInt(toxi90);//valor  iva  de  unitario
+                                                    respuesiva90 = parseInt(toxi90) - parseInt(tintes60) ;                 
+                                                    respuestaiva90 = parseInt(toxi90) - respuesiva90;
+                                                    costoxisobranesiva90 = respuesiva90 * precioundiva90;
+
+                                                   
+
+
+
+                                                                if (respuesta90 > 0 && respuesta90 <= 99) {
+
+                                                                            completoiva90 = respuestaiva90 * precioundiva90;
+                                                                            completo90 = respuesta90 * preciound90;
+                                                                           
+                                                                                                    
+                                                                }else if (respuesta90 >= 100 && respuesta90 <= 250) {
+                                                                    
+                                                                            trestante = respuesta90 * preciound90;
+                                                                            trestanteiva = respuestaiva90 * precioundiva90;
+                                                                            descuentos90 = trestante * tres / 100;
+                                                                            completo90 = trestante - descuentos90;
+                                                                        
+                                                                            descuentosiva90 = trestanteiva * tres / 100;
+                                                                            completoiva90 = trestanteiva - descuentosiva90;
+                                                                          
+                                                                            
+                                                                    
+                                                                }else if (respuesta90 >= 251 && respuesta90 <= 500) {
+
+                                                                            trestante = respuesta90 * preciound90;
+                                                                            trestanteiva = respuestaiva90 * precioundiva90;
+                                                                            descuentos90 = trestante * seis / 100;
+                                                                            completo90 = trestante - descuentos90;
+                                                                        
+                                                                            descuentosiva90 = trestanteiva * seis / 100;
+                                                                            completoiva90 = trestanteiva - descuentosiva90;
+                                                                          
+                                                                            
+                                                                    
+                                                                }else if (respuesta90 >= 501) {
+
+                                                                            trestante = respuesta90 * preciound90;
+                                                                            trestanteiva = respuestaiva90 * precioundiva90;
+                                                                            descuentos90 = trestante * nueve / 100;
+                                                                            completo90 = trestante - descuentos90;
+                                                                        
+                                                                            descuentosiva90 = trestanteiva * nueve / 100;
+                                                                            completoiva90 = trestanteiva - descuentosiva90;
+                                                                         
+                                                                            
+
+
+
+                                                                    
+                                                                }
+
+
+                                                toivaoxi60 = completoiva90 + costoxisobranesiva90 ;
+                                                tooxi60 = completo90 + costoxisobranes90; 
+
+                                              
+
+
+
+
+
+                                        }       
+
+
+
+                        }else if($(this).val() == 'ox150'){ 
+
+                                    var tintes100= $("#totaltintes").val();
+                                    var  toxi150 = $('#oxicrema150').val();
+
+                                    if (parseInt(toxi150) < parseInt(tintes100)) {// cuando  las oxicremas de  90 son menores  a los  tintes 
+                                                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                    obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                    objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                    canivas150 = objiva150.val();
+                                                    cant150 = obj150.val() ;
+                                                    sum150 =  sum150 + parseInt(obj150.val());
+                                                    sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                    toivaoxi150 = sumiva150;
+                                                    tooxi150 = sum150;           
+                                                    $(this).closest("tr").find("input[name='porcentaje[]']").val('0');        
+
+                                    }else if(parseInt(toxi150) === parseInt(tintes100)){// cuando las oxicremas 150 son  iguales  a los  tintes de 100 
+
+
+                                                if (parseInt(toxi150) >= 0 && parseInt(toxi150) <= 99) {// si las oxicremas  son menores a  99 
+
+                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                canivas150 = objiva150.val();
+                                                cant150 = obj150.val() ;
+                                                sum150 =  sum150 + parseInt(obj150.val());
+                                                sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                toivaoxi150 = sumiva150;
+                                                tooxi150 = sum150;  
+                                                $(this).closest("tr").find("input[name='porcentaje[]']").val('0');
+
+
+                                                }else if(parseInt(toxi150) >= 100 && parseInt(toxi150) <= 250){// si  las  oxicremas son  mas de  100  pero  menos  de 250 
+
+                                                currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                canivas150 = objiva150.val();
+                                                cant150 = obj150.val() ;
+                                                sum150 =  sum150 + parseInt(obj150.val());
+                                                sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                descu150 = sum150 * tres / 100;
+                                                tooxi150 = sum150 - descu150;
+
+                                                ttiva150 = sumiva150 * tres / 100;
+                                                toivaoxi150 = sumiva150 - ttiva150;
+                                                $(this).closest("tr").find("input[name='porcentaje[]']").val(tres);
+
+
+
+                                                }else if(parseInt(toxi150) >= 251 && parseInt(toxi150) <= 500){
+
+                                                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                    obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                    objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                    canivas150 = objiva150.val();
+                                                    cant150 = obj150.val() ;
+                                                    sum150 =  sum150 + parseInt(obj150.val());
+                                                    sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                    descu150 = sum150 * seis / 100;
+                                                    tooxi150 = sum150 - descu150;
+
+                                                    ttiva150 = sumiva150 * seis / 100;
+                                                    toivaoxi150 = sumiva150 - ttiva150;
+                                                    $(this).closest("tr").find("input[name='porcentaje[]']").val(seis);
+                                                        
+                                                }else if(parseInt(toxi150) >=501 ){
+
+                                                    currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                    obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                    objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                    canivas150 = objiva150.val();
+                                                    cant150 = obj150.val() ;
+                                                    sum150 =  sum150 + parseInt(obj150.val());
+                                                    sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                    descu150 = sum150 * nueve / 100;
+                                                    tooxi150 = sum150 - descu150;
+
+                                                    ttiva150 = sumiva150 * nueve / 100;
+                                                    toivaoxi150 = sumiva150 - ttiva150;
+                                                    $(this).closest("tr").find("input[name='porcentaje[]']").val(nueve);
+
+
+
+
+                                                }
+
+                
+                                    
+
+                                    }else if(parseInt(toxi150) > parseInt(tintes100)){// cuando  las oxicremas de  150 son  mas que  los  tintes  de  100
+
+                                                            currentInput = $(this).closest("tr").find("td:eq(4)"); 
+                                                            obj150 =  $(this).closest("tr").find("input[name='inporte[]']");
+                                                            objiva150 =  $(this).closest("tr").find("input[name='iva[]']");
+                                                            canivas150 = objiva150.val();
+                                                            cant150 = obj150.val() ;
+                                                            sum150 =  sum150 + parseInt(obj150.val());
+                                                            sumiva150 = sumiva150 + parseInt(objiva150.val());
+
+                                                            preciound150 = sum150 / parseInt(toxi150);// precio unitario 
+                                                            respues150 = parseInt(toxi150) - parseInt(tintes100) ;// esta seria el resultado del sobrante  de las oxicremas  en la resta  con los  tintes 
+                                                            respuesta150 = parseInt(toxi150) - respues150; // esta seria  la cantidad igual que tiene  las oxicremas  y  los   tintes 
+                                                            costoxisobranes150 = respues150 * preciound150; // total el valor de  los  sobrantes 
+
+                                                            precioundiva150 = sumiva150 / parseInt(toxi150);//valor  iva  de  unitario
+                                                            respuesiva150 = parseInt(toxi150) - parseInt(tintes100) ;                 
+                                                            respuestaiva150 = parseInt(toxi150) - respuesiva150;
+                                                            costoxisobranesiva150 = respuesiva150 * precioundiva150;
+
+
+                                                                                            
+                                                                    if (respuesta150 > 0 && respuesta150 <= 99) {
+
+                                                                                completoiva150 = respuestaiva150 * precioundiva150;
+                                                                                completo150 = respuesta150 * preciound150;
+                                                                                            
+                                                                    }else if (respuesta150 >= 100 && respuesta150 <= 250) {
+
+                                                                                trestante150 = respuesta150 * preciound150;
+                                                                                trestanteiva150 = respuestaiva150 * precioundiva150;
+                                                                                descuentos150 = trestante150 * tres / 100;
+                                                                                completo150 = trestante150 - descuentos150;
+
+                                                                                descuentosiva150 = trestanteiva150 * tres / 100;
+                                                                                completoiva150 = trestanteiva150 - descuentosiva150;
+
+
+                                                                    }else if (respuesta150 >= 251 && respuesta150 <= 500) {
+
+                                                                                trestante150 = respuesta150 * preciound150;
+                                                                                trestanteiva150 = respuestaiva150* precioundiva150;
+                                                                                descuentos150 = trestante150 * seis / 100;
+                                                                                completo150 = trestante150 - descuentos150;
+
+                                                                                descuentosiva150 = trestanteiva150 * seis / 100;
+                                                                                completoiva150 = trestanteiva150 - descuentosiva150;
+
+                                                                
+
+                                                                    }else if (respuesta150 >= 501) {
+
+                                                                                trestante150 = respuesta150 * preciound150;
+                                                                                trestanteiva150 = respuestaiva150 * precioundiva150;
+                                                                                descuentos150 = trestante150 * nueve / 100;
+                                                                                completo150 = trestante150 - descuentos150;
+
+                                                                                descuentosiva150 = trestanteiva150 * nueve / 100;
+                                                                                completoiva150 = trestanteiva150 - descuentosiva150;
+
+                                                                
+
+
+
+
+                                                                    }
+
+
+                                                        toivaoxi150 = completoiva150 + costoxisobranesiva150 ;
+                                                        tooxi150 = completo150 + costoxisobranes150;
+
+
+                                    }
+
+
+                        }//fin del if de los tintes y  las  oxicremas  y  los  no  
+
+
+              }   // fin if acciones especiales 
+   
+   
+   
+   
+   
+   
+   
+   
+    }// fin  del  if  inicial  
+
+                       
+});
+
+               
+
+
+   if(tcliente !='2 - DISTRIBUIDORES' ){
+
+
+
+           
+                /////////////////////////////////////////////
+
+             despecial= accioneespecial(codigosclientes);
+
+ 
+
+
+
+
+            var rdescuentotintes=(total + tot + tooxi60 + tooxi150)*despecial.procentajetintes/100;// descuento productos tintes 
+            var rdescuentoproductos= sumno*despecial.porcentajeproductos/100; // descuento productos  en general 
+
+			
+            var rtotaldescuentosvarios = (sumno + total + tot + tooxi60 + tooxi150 + totalfrees + tooxifree60) - (rdescuentotintes+rdescuentoproductos);
+			
+			//var resultadosacc= (rtotaldescuentosvarios)*despecial.porcentajepiefactura/100;
+            var resultadosacc= (rtotaldescuentosvarios)*$("#descuentospie").val()/100;
+           
+            var subtotal = rtotaldescuentosvarios - resultadosacc;
+
+			console.log("validar si es fuera de sub",subtotal);
+
+
+            var ivadescuentotintes =(tiva + totiva + toivaoxi60 + toivaoxi150)*despecial.procentajetintes/100;
+            var ivadescuentoproductos = sivano*despecial.porcentajeproductos/100;
+            var ivatotaldescuentos=(sivano + tiva + totiva + toivaoxi60 + toivaoxi150 + tivafrees +toivaoxifree60) - (ivadescuentotintes+ivadescuentoproductos);
+
+
+			// var resultadoacci= (ivatotaldescuentos)*despecial.porcentajepiefactura/100;
+            var resultadoacci= (ivatotaldescuentos)*$("#descuentospie").val()/100;
+            var totalivas = ivatotaldescuentos-resultadoacci;
+			console.log("validar si es fuera de sub iva",totalivas);
+
+            
+            var final = subtotal + totalivas;
+
+			console.log('productos',despecial.porcentajeproductos);
+
+
+            $("input[name=subtotal]").val(numeral(subtotal).format('0,0.00'));
+            $("input[name=iva]").val(numeral(totalivas).format('0,0.00'));
+            $("input[name=total]").val(numeral(final).format('0,0.00'));
+            $("input[name=subtotales]").val(Math.round(subtotal));
+            $("input[name=ivas]").val(Math.round(totalivas));
+            $("input[name=totales]").val(Math.round(final));
+            //$("input[name=descuentospie]").val(despecial.porcentajepiefactura);//ocultar se trae desde arriba 
+                            
+
+                ////////////////////////////////////////////
+                
+                
+
+
+    }else{
+////////////////////////////////////////////probar con los que son distribuidores ////////////////////////
+
+   
+
+                /////////////////////////////////////////////
+
+             despecial= accioneespecial(codigosclientes);
+
+       
+			
+
+            var rdescuentotintes=(total + tot + tooxi60 + tooxi150 )*despecial.procentajetintes/100;// descuento productos tintes 			
+            var rdescuentoproductos= sumno*despecial.porcentajeproductos/100; // descuento productos  en general 
+          
+            var rtotaldescuentosvarios = (sumno + total + tot + tooxi60 + tooxi150 + totalfrees + tooxifree60) - (rdescuentotintes+rdescuentoproductos);
+			
+
+			//var resultadosacc= (rtotaldescuentosvarios)*despecial.porcentajepiefactura/100;
+            var resultadosacc= (rtotaldescuentosvarios)*$("#descuentospie").val()/100;
+			console.log("calculo de la oferta"+resultadosacc);
+       
+            var subtotal = rtotaldescuentosvarios - resultadosacc;
+			console.log("subtotal ",subtotal);
+
+
+            var ivadescuentotintes =(tiva + totiva + toivaoxi60 + toivaoxi150 )*despecial.procentajetintes/100;
+            var ivadescuentoproductos = sivano*despecial.porcentajeproductos/100;
+            var ivatotaldescuentos=(sivano + tiva + totiva + toivaoxi60 + toivaoxi150 + tivafrees + toivaoxifree60) - (ivadescuentotintes+ivadescuentoproductos);
+
+
+			//var resultadoacci= (ivatotaldescuentos)*despecial.porcentajepiefactura/100;
+            var resultadoacci= (ivatotaldescuentos)*$("#descuentospie").val()/100;
+            var totalivas = ivatotaldescuentos-resultadoacci;
+			console.log("iva ",totalivas);
+            
+            var final = subtotal + totalivas;
+
+			console.log('productos',despecial.porcentajeproductos);
+
+
+
+            $("input[name=subtotal]").val(numeral(subtotal).format('0,0.00'));
+            $("input[name=iva]").val(numeral(totalivas).format('0,0.00'));
+            $("input[name=total]").val(numeral(final).format('0,0.00'));
+            $("input[name=subtotales]").val(Math.round(subtotal));
+            $("input[name=ivas]").val(Math.round(totalivas));
+            $("input[name=totales]").val(Math.round(final));
+           // $("input[name=descuentospie]").val(despecial.porcentajepiefactura);//ocultar se trae desde arriba 
+                            
+
+
+
+
+
+
+
+
+    }
+
+                
+     
+
+    
+
+
+}// fin de la funcion totalizar 
